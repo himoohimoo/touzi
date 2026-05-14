@@ -9,29 +9,34 @@ const modules = [
     path: '/heng/sect',
   },
   {
-    title: '资产配置',
-    subtitle: '不把鸡蛋放在一个篮子里',
+    title: '价投股精髓',
+    subtitle: '价值投资的核心理念',
+    icon: '💎',
+    description: '安全边际、能力圈、护城河、长期持有——掌握巴菲特价值投资的精髓要义。',
+  },
+  {
+    title: '成长股精髓',
+    subtitle: '寻找未来的十倍股',
+    icon: '🚀',
+    description: '高ROE、净利润增长、行业空间、管理层质量——识别高成长企业的关键指标。',
+  },
+  {
+    title: '仓位控制',
+    subtitle: '风险控制的第一道防线',
     icon: '🎯',
-    description: '中美中产资产配置差异、45岁中产配置建议，科学分配你的资产。',
-    path: '/heng/asset',
+    description: '单只股票仓位上限、行业集中度、现金储备比例——科学的仓位管理策略。',
   },
   {
-    title: '再平衡策略',
-    subtitle: '让组合回归最优状态',
-    icon: '⚖️',
-    description: '定期检查资产配比，偏离目标时进行再平衡，低买高卖，纪律化操作。',
-  },
-  {
-    title: '定投系统',
-    subtitle: '用时间换空间',
-    icon: '🔄',
-    description: '设定定投计划，选择定投标的，确定定投频率和金额，让时间成为你的朋友。',
-  },
-  {
-    title: '买卖纪律',
-    subtitle: '知行合一的交易规则',
+    title: '交易军规',
+    subtitle: '铁的纪律，钢的执行力',
     icon: '📏',
-    description: '建立买入清单和卖出规则，避免情绪化交易，用纪律战胜人性弱点。',
+    description: '买入前 checklist、止损止盈规则、禁止操作清单——用纪律战胜人性弱点。',
+  },
+  {
+    title: '投资心法',
+    subtitle: '修炼内心的平静',
+    icon: '🧘',
+    description: '独立思考、逆向思维、延迟满足、承认错误——投资大师的心理修炼之道。',
   },
 ]
 
@@ -57,8 +62,10 @@ function Heng() {
         </p>
         <p>
           投资体系是你的"护城河"。没有体系的投资就像没有地图的航行，
-          随波逐流，最终迷失方向。一个好的投资体系应该包括：
-          资产配置策略、买入卖出规则、风险管理方案和定期复盘机制。
+          随波逐流，最终迷失方向。
+          <span style={{ color: 'var(--dao)', fontWeight: 700, display: 'block', marginTop: '12px' }}>
+            我们重点聚焦价值投资和成长投资体系，短线炒作和量化不涉及，聚焦赚公司成长的钱。
+          </span>
         </p>
       </div>
 

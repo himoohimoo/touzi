@@ -58,18 +58,41 @@ const INVESTMENT_TYPES = {
 
 function ZhiResult() {
   const navigate = useNavigate()
-  const { saveTestResult } = useAuth()
+  const { user, saveTestResult, showAuth, setShowAuth } = useAuth()
   const [result, setResult] = useState(null)
+  const [saved, setSaved] = useState(false)
 
   useEffect(() => {
     const saved = sessionStorage.getItem('zhiTestResult')
     if (saved) {
       const parsed = JSON.parse(saved)
       setResult(parsed)
-      // 保存到用户数据
-      saveTestResult('personality', parsed)
+      // 如果已登录，自动保存
+      if (user) {
+        saveTestResult('personality', parsed)
+        setSaved(true)
+      }
     }
   }, [])
+
+  // 登录后自动保存
+  useEffect(() => {
+    if (user && result && !saved) {
+      saveTestResult('personality', result)
+      setSaved(true)
+    }
+  }, [user, result, saved])
+
+  const handleSave = () => {
+    if (!user) {
+      setShowAuth('login')
+      return
+    }
+    if (result && !saved) {
+      saveTestResult('personality', result)
+      setSaved(true)
+    }
+  }
 
   if (!result) {
     return (
@@ -169,9 +192,48 @@ function ZhiResult() {
         <p>{type.advice}</p>
       </div>
 
+      {/* 保存提示 */}
+      {!user && (
+        <div style={{
+          background: 'rgba(243, 156, 18, 0.08)',
+          border: '1px solid rgba(243, 156, 18, 0.2)',
+          borderRadius: '12px',
+          padding: '16px',
+          margin: '0 16px 16px',
+          textAlign: 'center',
+        }}>
+          <p style={{ fontSize: '14px', color: '#f39c12', fontWeight: 500, marginBottom: '8px' }}>
+            💡 登录后即可保存测试结果
+          </p>
+          <p style={{ fontSize: '12px', color: 'var(--text-secondary)', margin: 0 }}>
+            保存后可在"认知篇 → 我的画像"中随时查看
+          </p>
+        </div>
+      )}
+
       {/* 操作按钮 */}
       <div className="result-actions">
-        <button className="btn btn-primary" onClick={() => navigate('/zhi/test/self')}>
+        {!saved && (
+          <button className="btn btn-primary" onClick={handleSave}>
+            {user ? '保存结果' : '登录并保存'}
+          </button>
+        )}
+        {saved && (
+          <div style={{
+            background: 'rgba(46, 204, 113, 0.08)',
+            border: '1px solid rgba(46, 204, 113, 0.2)',
+            borderRadius: '8px',
+            padding: '10px 20px',
+            fontSize: '14px',
+            color: 'var(--dao)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+          }}>
+            ✅ 已保存到我的画像
+          </div>
+        )}
+        <button className="btn btn-secondary" onClick={() => navigate('/zhi/test/self')}>
           重新测试
         </button>
         <button className="btn btn-secondary" onClick={() => navigate('/zhi')}>

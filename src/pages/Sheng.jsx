@@ -2,28 +2,34 @@ import { useNavigate } from 'react-router-dom'
 
 const modules = [
   {
-    title: '交易记录',
-    subtitle: '好记性不如烂笔头',
-    icon: '📒',
-    description: '记录每笔交易的买入理由、卖出原因、持仓时间和盈亏情况，建立完整的交易档案。',
+    title: '以史为鉴',
+    subtitle: '历史不会重复，但会押韵',
+    icon: '📜',
+    description: '回顾A股30年重大牛熊周期，理解市场规律，从历史中寻找投资的智慧。',
   },
   {
-    title: '归因分析',
-    subtitle: '找到盈亏的真正原因',
-    icon: '🔍',
-    description: '区分运气和能力，分析盈利是因为体系正确还是偶然因素，亏损是因为判断失误还是黑天鹅事件。',
+    title: '以人为鉴',
+    subtitle: '站在巨人的肩膀上',
+    icon: '👥',
+    description: '学习巴菲特、段永平等投资大师的成功经验，汲取他们的投资智慧。',
   },
   {
-    title: '策略迭代',
-    subtitle: '持续优化你的投资系统',
-    icon: '🔄',
-    description: '基于复盘结果，调整资产配置、优化买卖规则、完善风控方案，让投资体系不断进化。',
+    title: '投资的坑',
+    subtitle: '避开前人踩过的雷',
+    icon: '⚠️',
+    description: '总结常见的投资陷阱和错误，建立避坑指南，少交学费。',
   },
   {
-    title: '情绪管理',
-    subtitle: '战胜最大的敌人——自己',
-    icon: '🧘',
-    description: '记录交易时的情绪状态，识别贪婪和恐惧的信号，建立情绪预警机制，保持理性决策。',
+    title: '经典股票分析',
+    subtitle: '解剖牛股的成功基因',
+    icon: '📊',
+    description: '深度分析茅台、腾讯等经典牛股的投资逻辑，学习如何识别优质企业。',
+  },
+  {
+    title: '经典财报分析',
+    subtitle: '透过数字看本质',
+    icon: '📈',
+    description: '解读优秀企业的财务报表，学习从财报中发现投资机会和风险。',
   },
 ]
 
