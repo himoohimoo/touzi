@@ -6,6 +6,7 @@ const modules = [
     subtitle: '历史不会重复，但会押韵',
     icon: '📜',
     description: '回顾A股30年重大牛熊周期，理解市场规律，从历史中寻找投资的智慧。',
+    path: '/sheng/history',
   },
   {
     title: '以人为鉴',

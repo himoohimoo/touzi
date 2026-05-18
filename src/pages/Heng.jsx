@@ -13,30 +13,35 @@ const modules = [
     subtitle: '价值投资的核心理念',
     icon: '💎',
     description: '安全边际、能力圈、护城河、长期持有——掌握巴菲特价值投资的精髓要义。',
+    path: '/heng/value',
   },
   {
     title: '成长股精髓',
     subtitle: '寻找未来的十倍股',
     icon: '🚀',
     description: '高ROE、净利润增长、行业空间、管理层质量——识别高成长企业的关键指标。',
+    path: '/heng/growth',
   },
   {
     title: '仓位控制',
     subtitle: '风险控制的第一道防线',
     icon: '🎯',
     description: '单只股票仓位上限、行业集中度、现金储备比例——科学的仓位管理策略。',
+    path: '/heng/position',
   },
   {
     title: '交易军规',
     subtitle: '铁的纪律，钢的执行力',
     icon: '📏',
     description: '买入前 checklist、止损止盈规则、禁止操作清单——用纪律战胜人性弱点。',
+    path: '/heng/rules',
   },
   {
     title: '投资心法',
     subtitle: '修炼内心的平静',
     icon: '🧘',
     description: '独立思考、逆向思维、延迟满足、承认错误——投资大师的心理修炼之道。',
+    path: '/heng/mindset',
   },
 ]
 

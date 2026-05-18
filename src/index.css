@@ -1,6 +1,6 @@
 /* ============================================
    投资养家 - 全局样式
-   知 · 道 · 行 · 省
+   知 · 道 · 行 · 器 · 省
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap');
@@ -14,6 +14,8 @@
   --xing-dark: #D35400;
   --sheng: #9B6FD0;
   --sheng-dark: #8E44AD;
+  --qi: #F39C12;
+  --qi-dark: #E67E22;
   --bg-dark: #0B0E17;
   --bg-mid: #111827;
   --bg-card: #1a1f35;
@@ -166,7 +168,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 60px 20px 40px;
+  padding: 80px 20px 40px;
   min-height: auto;
   overflow: visible;
 }
@@ -320,6 +322,31 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   margin-top: 32px;
 }
 
+/* 知节点提示词显示在右侧 */
+.node-zhi .node-desc {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+}
+
+/* 器节点提示词显示在右侧 */
+.node-qi .node-desc {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+}
+
+/* 省节点提示词显示在左侧 */
+.node-sheng .node-desc {
+  left: auto;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+}
+
 .node-container:hover .node-desc,
 .node-desc.desc-visible {
   opacity: 1;
@@ -327,19 +354,25 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 }
 
 /* 知 - 顶部 */
+/* 四球均匀分布：知(上) 行(右) 器(下) 省(左) - 90°间隔 */
 .node-zhi {
   top: calc(50% - 32vmin - 20px);
   left: calc(50% - 80px);
 }
 
 .node-xing {
-  top: calc(50% + 16vmin - 80px);
-  left: calc(50% + 27.7vmin - 80px);
+  top: calc(50% - 80px);
+  left: calc(50% + 32vmin - 80px);
+}
+
+.node-qi {
+  top: calc(50% + 32vmin - 140px);
+  left: calc(50% - 80px);
 }
 
 .node-sheng {
-  top: calc(50% + 16vmin - 80px);
-  left: calc(50% - 27.7vmin - 80px);
+  top: calc(50% - 80px);
+  left: calc(50% - 32vmin - 80px);
 }
 
 .node-dao {
@@ -450,6 +483,44 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 
 .node-sheng .node-ring.inner {
   border: 1px dashed rgba(155, 111, 208, 0.3);
+}
+
+/* 器 - 下方 */
+.node-qi .node {
+  width: 160px;
+  height: 160px;
+  animation: gentleFloat 6s ease-in-out infinite 1.5s;
+}
+
+.node-qi .node-core {
+  width: 160px;
+  height: 160px;
+  background: linear-gradient(145deg, var(--qi) 0%, var(--qi-dark) 100%);
+  box-shadow:
+    0 0 50px rgba(243, 156, 18, 0.35),
+    0 0 100px rgba(243, 156, 18, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.node-qi .node:hover .node-core {
+  box-shadow:
+    0 0 70px rgba(243, 156, 18, 0.45),
+    0 0 140px rgba(243, 156, 18, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.node-qi .node-ripple { border-color: var(--qi); width: 160px; height: 160px; }
+
+.node-qi .node-icon { font-size: 36px; }
+.node-qi .node-char { font-size: 32px; }
+.node-qi .node-en { font-size: 11px; }
+
+.node-qi .node-ring.outer {
+  border: 1px solid rgba(243, 156, 18, 0.2);
+}
+
+.node-qi .node-ring.inner {
+  border: 1px dashed rgba(243, 156, 18, 0.3);
 }
 
 /* 道 - 中心 */
@@ -575,27 +646,31 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 
 @media (max-width: 480px) {
   .node-zhi { top: calc(50% - 32vmin - 5px); left: calc(50% - 50px); }
-  .node-xing { top: calc(50% + 16vmin - 50px); left: calc(50% + 27.7vmin - 50px); }
-  .node-sheng { top: calc(50% + 16vmin - 50px); left: calc(50% - 27.7vmin - 50px); }
+  .node-xing { top: calc(50% - 50px); left: calc(50% + 32vmin - 50px); }
+  .node-qi { top: calc(50% + 32vmin - 90px); left: calc(50% - 50px); }
+  .node-sheng { top: calc(50% - 50px); left: calc(50% - 32vmin - 50px); }
   .node-dao { top: calc(50% - 50px); left: calc(50% - 50px); }
 
   .node-zhi .node,
   .node-xing .node,
-  .node-sheng .node {
+  .node-sheng .node,
+  .node-qi .node {
     width: 100px;
     height: 100px;
   }
 
   .node-zhi .node-core,
   .node-xing .node-core,
-  .node-sheng .node-core {
+  .node-sheng .node-core,
+  .node-qi .node-core {
     width: 100px;
     height: 100px;
   }
 
   .node-zhi .node-ripple,
   .node-xing .node-ripple,
-  .node-sheng .node-ripple {
+  .node-sheng .node-ripple,
+  .node-qi .node-ripple {
     width: 100px;
     height: 100px;
   }

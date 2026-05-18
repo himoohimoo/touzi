@@ -7,7 +7,6 @@ function Home() {
   const { user, setShowAuth, logout } = useAuth()
   const [hoveredNode, setHoveredNode] = useState(null)
   const [showVision, setShowVision] = useState(false)
-  const [showCompound, setShowCompound] = useState(false)
   const orbitRef = useRef(null)
 
   // 动态计算轨道尺寸，确保精确穿过三球圆心
@@ -67,19 +66,21 @@ function Home() {
               </>
             ) : (
               <>
-                <button className="auth-link" onClick={() => setShowAuth('login')}>登录</button>
-                <span className="auth-divider">|</span>
-                <button className="auth-link" onClick={() => setShowAuth('register')}>注册</button>
-              </>
+              <button className="auth-link" onClick={() => setShowAuth('login')}>登录</button>
+              <span className="auth-divider">|</span>
+              <button className="auth-link" onClick={() => setShowAuth('register')}>注册</button>
+              <span className="auth-divider">|</span>
+              <button className="auth-link" onClick={() => navigate('/contact')}>联系</button>
+            </>
             )}
           </div>
         </div>
       </header>
 
-      {/* Logo愿景弹窗 */}
+      {/* Logo愿景弹窗（含复利投资内容） */}
       {showVision && (
         <div className="vision-overlay" onClick={() => setShowVision(false)}>
-          <div className="vision-card" onClick={e => e.stopPropagation()}>
+          <div className="vision-card compound-card" onClick={e => e.stopPropagation()}>
             <div className="vision-icon">🌟</div>
             <h2>我们的愿景</h2>
             <div className="vision-text">
@@ -87,16 +88,6 @@ function Home() {
               <p>价值投资</p>
               <p>财务自由</p>
             </div>
-            <button className="vision-close" onClick={() => setShowVision(false)}>知道了</button>
-          </div>
-        </div>
-      )}
-
-      {/* 复利投资弹窗 */}
-      {showCompound && (
-        <div className="vision-overlay" onClick={() => setShowCompound(false)}>
-          <div className="vision-card compound-card" onClick={e => e.stopPropagation()}>
-            <h2>🌱 复利投资，慢慢变富</h2>
 
             <div className="wealth-curve-section">
               <h3>人生收入曲线图</h3>
@@ -129,38 +120,21 @@ function Home() {
                   <text x="335" y="175" textAnchor="middle" fill="#888" fontSize="9">70</text>
                   <text x="390" y="175" textAnchor="middle" fill="#888" fontSize="9">80</text>
 
-                  {/* 工资收入曲线（蓝色）- 45岁前上升，45-60平稳，后下降 */}
+                  {/* 工资收入曲线（蓝色） */}
                   <path
-                    d="M50 145
-                       C80 140, 100 130, 130 110
-                       C150 95, 170 75, 190 65
-                       C210 58, 240 55, 278 58
-                       C310 62, 340 80, 370 110
-                       L390 125"
-                    stroke="#4A90D9"
-                    strokeWidth="3"
-                    fill="none"
-                    strokeLinecap="round"
+                    d="M50 145 C80 140, 100 130, 130 110 C150 95, 170 75, 190 65 C210 58, 240 55, 278 58 C310 62, 340 80, 370 110 L390 125"
+                    stroke="#4A90D9" strokeWidth="3" fill="none" strokeLinecap="round"
                   />
 
-                  {/* 被动收入曲线（绿色）- 45岁后加速 */}
+                  {/* 被动收入曲线（绿色） */}
                   <path
-                    d="M50 155
-                       C100 152, 150 148, 190 140
-                       C220 132, 250 110, 278 80
-                       C310 50, 350 30, 390 25"
-                    stroke="#2ECC71"
-                    strokeWidth="3"
-                    fill="none"
-                    strokeLinecap="round"
+                    d="M50 155 C100 152, 150 148, 190 140 C220 132, 250 110, 278 80 C310 50, 350 30, 390 25"
+                    stroke="#2ECC71" strokeWidth="3" fill="none" strokeLinecap="round"
                   />
 
                   {/* 关键节点标记 */}
-                  {/* 45岁转折点 */}
                   <circle cx="207" cy="62" r="6" fill="#FFD700" stroke="#fff" strokeWidth="1"/>
                   <text x="207" y="52" textAnchor="middle" fill="#FFD700" fontSize="10" fontWeight="600">45岁</text>
-
-                  {/* 60岁标记 */}
                   <circle cx="278" cy="58" r="4" fill="#4A90D9" stroke="#fff" strokeWidth="1"/>
                   <text x="278" y="75" textAnchor="middle" fill="#4A90D9" fontSize="9">60岁</text>
 
@@ -263,7 +237,7 @@ function Home() {
               </div>
             </div>
 
-            <button className="vision-close" onClick={() => setShowCompound(false)}>关闭</button>
+            <button className="vision-close" onClick={() => setShowVision(false)}>关闭</button>
           </div>
         </div>
       )}
@@ -298,7 +272,7 @@ function Home() {
           </div>
         </div>
 
-        {/* 行 - 右下 */}
+        {/* 行 - 右侧 */}
         <div className="node-container node-xing">
           <button
             className="node"
@@ -320,7 +294,29 @@ function Home() {
           </div>
         </div>
 
-        {/* 省 - 左下 */}
+        {/* 器 - 下方 */}
+        <div className="node-container node-qi">
+          <button
+            className="node"
+            onClick={() => navigate('/qi')}
+            aria-label="工具篇"
+            onMouseEnter={() => setHoveredNode('qi')}
+            onMouseLeave={() => setHoveredNode(null)}
+          >
+            <div className="node-ring outer"></div>
+            <div className="node-ring inner"></div>
+            <div className="node-core">
+              <span className="node-icon">🛠️</span>
+              <span className="node-char">器</span>
+              <span className="node-en">Tools</span>
+            </div>
+          </button>
+          <div className="node-desc" style={{ opacity: hoveredNode === 'qi' ? 1 : 0, visibility: hoveredNode === 'qi' ? 'visible' : 'hidden' }}>
+            工欲善其事<br/>投资分析工具箱
+          </div>
+        </div>
+
+        {/* 省 - 左侧 */}
         <div className="node-container node-sheng">
           <button
             className="node"
@@ -365,16 +361,9 @@ function Home() {
         </div>
       </main>
 
-      {/* 复利投资 - 主图形区和底部之间 */}
-      <div className="compound-footer">
-        <button className="compound-link" onClick={() => setShowCompound(true)}>
-          复利投资，慢慢变富
-        </button>
-      </div>
-
       {/* 底部标语 */}
       <footer className="home-footer">
-        <p>知 → 行 → 省 · 循环精进，以道御术</p>
+        <p>知 → 行 → 器 → 省 · 循环精进，以道御术</p>
       </footer>
     </div>
   )

@@ -13,6 +13,7 @@ const modules = [
     subtitle: '找到好公司是投资的第一步',
     icon: '🔍',
     description: '从行业分析、商业模式、财务指标、估值水平等多维度筛选优质企业。',
+    path: '/xing/stock-picking',
   },
   {
     title: '如何持股',
@@ -25,12 +26,14 @@ const modules = [
     subtitle: '会买的是徒弟，会卖的是师傅',
     icon: '💰',
     description: '掌握止盈止损策略，识别卖出信号，在合适时机兑现收益或控制亏损。',
+    path: '/xing/sell-stock',
   },
   {
     title: '如何对待波动',
     subtitle: '市场先生的情绪起伏',
     icon: '🌊',
     description: '理解市场波动的本质，建立应对剧烈波动的心理准备和操作策略。',
+    path: '/xing/volatility',
   },
   {
     title: '实践N问',
@@ -68,13 +71,24 @@ function Xing() {
 
       <div className="modules-grid">
         {modules.map((mod, idx) => (
-          <div key={idx} className="module-card" onClick={() => mod.title === '账户搭建' && setShowAccountGuide(true)} style={{ cursor: mod.title === '账户搭建' ? 'pointer' : 'default' }}>
+          <div 
+            key={idx} 
+            className="module-card" 
+            onClick={() => {
+              if (mod.title === '账户搭建') {
+                setShowAccountGuide(true)
+              } else if (mod.path) {
+                navigate(mod.path)
+              }
+            }} 
+            style={{ cursor: (mod.title === '账户搭建' || mod.path) ? 'pointer' : 'default' }}
+          >
             <span className="module-icon">{mod.icon}</span>
             <h3>{mod.title}</h3>
             <p className="module-subtitle">{mod.subtitle}</p>
             <p className="module-desc">{mod.description}</p>
-            <span className={mod.title === '账户搭建' ? 'module-btn' : 'module-btn disabled'}>
-              {mod.title === '账户搭建' ? '查看详情' : '即将上线'}
+            <span className={(mod.title === '账户搭建' || mod.path) ? 'module-btn' : 'module-btn disabled'}>
+              {(mod.title === '账户搭建' || mod.path) ? '查看详情' : '即将上线'}
             </span>
           </div>
         ))}
